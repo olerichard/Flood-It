@@ -1,0 +1,19 @@
+.board {
+  display:flex;
+  flex-direction: column;
+  align-items:stretch;
+  border:none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px; 
+  text-align:center; 
+}
+
+.line {
+  flex:1;
+  display:flex;
+  flex-direction: row;
+  padding: 0px;
+  margin: 0px;
+  font-size:0px;
+}

@@ -1,0 +1,10 @@
+.tile {
+  display:flex;
+  flex-direction: row;
+  flex:1;
+  padding: 0px;
+  margin: 0px;
+  font-size:0px;
+  border:0px;
+  border: none;
+}

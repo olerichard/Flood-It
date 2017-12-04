@@ -1,0 +1,13 @@
+.buttonRow {
+  display:flex;
+  flex-direction: row;
+  align-items:stretch;
+  border:none;
+  width: 100%;
+  height: 42.48px;
+  margin-top: 10px; 
+  margin-left: auto;
+  margin-right: auto;
+  padding:0px;
+}
+
