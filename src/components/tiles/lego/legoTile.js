@@ -1,7 +1,7 @@
 import React from 'react'
-import "./tile.css"
+import "./legoTile.css"
 
-const Tile = ({color}) => {
+const LegoTile = ({color}) => {
     return (<li 
       className={`tile`} 
       style={
@@ -11,4 +11,4 @@ const Tile = ({color}) => {
   }
 
 
-export default Tile
+export default LegoTile

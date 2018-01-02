@@ -1,6 +1,4 @@
 .tile {
-  display:flex;
-  flex-direction: row;
   flex:1;
   padding: 0px;
   margin: 0px;

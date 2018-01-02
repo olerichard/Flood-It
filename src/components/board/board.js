@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import shortId from 'shortid'
 import "./board.css"
-import Tile from "../tile/tile"
+import Tile from "../tiles/standardTile/standardTile"
+import WinnerSplash from "../winnersplash/winnersplash"
 
-const Board = ({board,colors,size}) => {
+const Board = ({board,colors,size,winCondition}) => {
   return( <div className="board" key="board" style={{height : size.height-190,width:size.width }}  >{
       board.map((line) => { 
        return <ul className={`line`}  key={shortId.generate()} >
@@ -12,6 +13,7 @@ const Board = ({board,colors,size}) => {
           })}
         </ul>  
       })}
+       <WinnerSplash winCondition={winCondition} size = {size}  />
     </div>
   )
 }
