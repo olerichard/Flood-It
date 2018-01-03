@@ -23,11 +23,12 @@
 .fa-refresh{
   margin-right: 10px;
 }
-
+@media (hover:hover) {
 .fa-refresh:hover {
   -webkit-animation:spin 2s linear infinite;
   -moz-animation:spin 2s linear infinite;
   animation:spin 2s linear infinite;
+}
 }
 
 
