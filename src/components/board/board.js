@@ -4,7 +4,13 @@ import "./board.css"
 import Tile from "../tiles/standardTile/standardTile"
 import WinnerSplash from "../winnersplash/winnersplash"
 
-const Board = ({board,colors,size,winCondition}) => {
+const Board = ({board,colors,size,winCondition,restart}) => {
+  
+  let splash = ""
+  if(winCondition !== false)
+    splash = <WinnerSplash winCondition={winCondition} size = {size} restart={restart} />
+  
+  
   return( <div className="board" key="board" style={{height : size.height-190,width:size.width }}  >{
       board.map((line) => { 
        return <ul className={`line`}  key={shortId.generate()} >
@@ -13,7 +19,7 @@ const Board = ({board,colors,size,winCondition}) => {
           })}
         </ul>  
       })}
-       <WinnerSplash winCondition={winCondition} size = {size}  />
+        {splash}
     </div>
   )
 }

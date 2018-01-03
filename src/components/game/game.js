@@ -30,22 +30,22 @@ export default class Game extends Component {
     window.removeEventListener('resize', this.resize)
   }
 
-  buttonClick = function(color,state){
+  buttonClick = (color,state) => {
     if(state.winner === false)
       this.setState(MakeMove(color,state))
   }
 
-  restartClick = function(color,state){
+  restartClick = () => {
     const newState = RestartGame()
     newState.window = this.windowSize(window.innerHeight,window.innerWidth)
-      this.setState(MakeMove(color,state))
+      this.setState(newState)
   }
 
-  windowSize = function(h,w){
+  windowSize = (h,w) =>{ 
     return {width:h/2.5,height:h}
   }
 
-  resize = function(){
+  resize = () =>{
     this.setState({window: this.windowSize(window.innerHeight,window.innerWidth)})
   }
 
@@ -57,7 +57,7 @@ export default class Game extends Component {
     return (
       <div className="game" style={{height : this.state.window.height,width:this.state.window.width }} >
         <TopMenu state={this.state} restart={this.restartClick}/>
-          <Board board={this.state.board} colors={this.state.colors} size={this.state.window} winCondition={this.state.winner}  />
+          <Board board={this.state.board} colors={this.state.colors} size={this.state.window} winCondition={this.state.winner} restart={this.restartClick} />
         <ButtonRow state={this.state} click={this.buttonClick} />
       </div>)
   }

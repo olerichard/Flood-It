@@ -9,7 +9,10 @@ const TopMenu = ({state, restart}) =>
     return ( <div className="topMenu">
       <div  className="score">MOVES: {str.substring(str.length-state.maxTurns.toString().length)} / {state.maxTurns}</div> 
       <div className="restart">
-        <i className="fa fa-refresh"></i>
+        <i 
+          className="fa fa-refresh" 
+          onClick={restart}
+        ></i>
         <i className="fa fa-navicon"></i>
       </div>
       

@@ -5,3 +5,27 @@
   font-size:30px;
   color:white;
 }
+
+.splash-restart {
+  position:relative;
+	width:200px;
+	color:#FFF;
+	display:block;
+	text-decoration:none;
+	margin:0 auto;
+	border-radius:5px;
+	background:#F7931E;
+	text-align:center;
+	padding:20px 30px;
+   font-size:25px;
+   top:10px;
+	transition: all 0.2s;
+   box-shadow: 0px 15px 0px #FC726D;
+}
+
+.splash-restart:active {
+  box-shadow: 0px 7px 0px #FC726D;
+  top:17px;
+}
+
+
