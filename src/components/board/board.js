@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import shortId from 'shortid'
 import "./board.css"
 import Tile from "../tiles/standardTile/standardTile"

@@ -12,24 +12,28 @@
   padding-left: 10px;
 }
 
-.restart {
+.menuButtons {
   flex:1;
-  flex-grow:1;
+  display:flex;
+  flex-direction: row;  
+}
+
+.menuButton {
+  flex:1;
   text-align: right;
   padding-right: 10px;
-
+  padding-left: 10px;
 }
 
-.fa-refresh{
-  margin-right: 10px;
-}
+
 @media (hover:hover) {
-.fa-refresh:hover {
-  -webkit-animation:spin 2s linear infinite;
-  -moz-animation:spin 2s linear infinite;
-  animation:spin 2s linear infinite;
+  .fa-refresh:hover {
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+  }
 }
-}
+
 
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
