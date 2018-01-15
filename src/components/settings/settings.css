@@ -10,22 +10,40 @@
   font-size: 30px;
 }
 
-.boardSize{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 5%;
-  
-  
-}
-.colorScheme{
-  display: flex;
-  flex-direction: row;
-  margin: 5%;
-}
-.difficulty{
+
+.boardSizeSettings{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin: 5%;
 }
+.boardSizeChoice{
+  border: solid;
+  width: 20%;
+  border-radius:5px;
+}
+.colorSchemeSettings{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 5%;
+}
+
+.colorSchemeChoice{
+  border: solid;
+  width: 40%;
+  border-radius:5px;
+}
+
+.difficultySettings{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 5%;
+}
+.difficultyChoice{
+  border: solid;
+  width: 31%;
+  border-radius:5px;
+}
+

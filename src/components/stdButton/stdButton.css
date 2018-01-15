@@ -1,0 +1,26 @@
+.stdButton {
+  position:relative;
+	width:60%;
+	color:#FFF;
+	display:block;
+	text-decoration:none;
+	margin:0 auto;
+	border-radius:5px;
+	background:#F7931E;
+	text-align:center;
+	padding:20px 30px;
+   font-size:25px;
+   top:10px;
+	transition: all 0.2s;
+   box-shadow: 0px 15px 0px #FC726D;
+}
+
+.stdButtonToggle{
+  box-shadow: 0px 7px 0px #FC726D;
+  top:17px;
+}
+
+.stdButton:active {
+  box-shadow: 0px 7px 0px #FC726D;
+  top:17px;
+}
