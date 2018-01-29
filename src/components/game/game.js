@@ -17,6 +17,7 @@ export default class Game extends Component {
     this.settingsClick = this.settingsClick.bind(this)
     this.resize = this.resize.bind(this)
     this.updateSetting = this.updateSetting.bind(this)
+    this.save = this.save.bind(this)
     this.state={}
   }
   
@@ -51,12 +52,16 @@ export default class Game extends Component {
       this.setState(MakeMove(color,state))
   }
 
-  restartClick = () => {
-    const newState = RestartGame()
+  restartClick = (state) => {
+    const newState = RestartGame(state)
     newState.window = this.windowSize(window.innerHeight,window.innerWidth)
       this.setState(newState)
   }
 
+  save = (state) => {
+    var newState = RestartGame(state)
+    this.setState(newState)
+  }
 
   windowSize = (h,w) =>{ 
     return {width:h/2.5,height:h}
@@ -72,15 +77,15 @@ export default class Game extends Component {
     }
     let settings = null
     if(this.state.showSettings){
-     settings = <Settings state={this.state} update={this.updateSetting}/>
+     settings = <Settings state={this.state} update={this.updateSetting} save = {this.save}/>
     }
 
     return (
-      <div className="game" style={{height : this.state.window.height,width:this.state.window.width }} >
+      <div className="game" style={{width:this.state.window.width }} >
         
           <TopMenu state={this.state} restart={this.restartClick} setting={this.settingsClick} />
           <Board board={this.state.board} colors={this.state.colors} size={this.state.window} winCondition={this.state.winner} restart={this.restartClick} />
-          <ButtonRow state={this.state} click={this.buttonClick} save={this.restartClick} />
+          <ButtonRow state={this.state} click={this.buttonClick}/>
         {settings}
       </div>)
   }
