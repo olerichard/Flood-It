@@ -1,23 +1,23 @@
 import React from 'react'
 import "./settings.css"
 import StdButton from '../stdButton/stdButton'
+import ColorButton from '../colorButton/colorButton'
 
 const Settings = ({state , update, restart, save}) => {
 
   const style = {
-                flex:1,
-                margin: "2px",
+
                 }
             
    const saveBtnStyle = {
-                  width:"60%",                  
+                         
                   }
   
 
   return ( 
     <div className="settings">
       
-      <div className="boardSize">
+      <div className="boardSize columns">
         <div className="boardSizeHeader">BOARD SIZE</div>
         <div className="boardSizeSettings">
           <StdButton text="5"  toggle = {state.boardSize===5  ? true:false} click = {update.bind(null,state,"boardSize",5)} style={style} />
@@ -26,15 +26,15 @@ const Settings = ({state , update, restart, save}) => {
         </div>
       </div>
       
-      <div className="colorScheme">
+      <div className="colorScheme columns">
         <div className="colorSchemeHeader">COLORS</div>
         <div className="colorSchemeSettings">
-        <StdButton text="scheme1" style={style}/>
-        <StdButton text="scheme2" style={style}/>
+        <ColorButton text="" style={style} colors={state.altColor[0]}/>
+        <ColorButton text="" style={style} colors={state.altColor[1]}/>
         </div>
       </div>
 
-      <div className="difficulty"> 
+      <div className="difficulty columns"> 
         <div className="difficultyHeader">DIFFICULTY</div>
         <div className="difficultySettings">  
         <StdButton text="Easy" toggle = {state.difficulty===3  ? true:false} click = {update.bind(null,state,"difficulty",3)} style={style}/>
@@ -42,7 +42,9 @@ const Settings = ({state , update, restart, save}) => {
         <StdButton text="Hard"toggle = {state.difficulty===1 ? true:false} click = {update.bind(null,state,"difficulty",1)} style={style}/>
         </div>
       </div>
+      <div className="save columns"> 
       <StdButton text="SAVE" click = {save.bind(null,state)} style ={saveBtnStyle} />
+      </div>
     </div>
 
   )  

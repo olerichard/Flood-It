@@ -23,9 +23,9 @@ export default class Game extends Component {
   
   componentDidMount(){
     window.addEventListener('keydown', this.handleKeyPress);
-    window.addEventListener('resize', this.resize)
+   // window.addEventListener('resize', this.resize)
     const newState = RestartGame()
-    newState.window = this.windowSize(window.innerHeight,window.innerWidth)
+ //   newState.window = this.windowSize(window.innerHeight,window.innerWidth)
     this.setState(newState) 
 
   }  
@@ -75,18 +75,13 @@ export default class Game extends Component {
     if(this.state.board === undefined){
       return (<p>Loading..</p>)
     }
-    let settings = null
-    if(this.state.showSettings){
-     settings = <Settings state={this.state} update={this.updateSetting} save = {this.save}/>
-    }
-
+    let settings = {updateSetting:this.updateSetting,save:this.save,showSettings:this.state.showSettings}    
     return (
-      <div className="game" style={{width:this.state.window.width }} >
+      <div className="game" >
         
           <TopMenu state={this.state} restart={this.restartClick} setting={this.settingsClick} />
-          <Board board={this.state.board} colors={this.state.colors} size={this.state.window} winCondition={this.state.winner} restart={this.restartClick} />
+          <Board board={this.state.board} colors={this.state.colors} winCondition={this.state.winner} restart={this.restartClick} setting={settings} state={this.state} />
           <ButtonRow state={this.state} click={this.buttonClick}/>
-        {settings}
       </div>)
   }
 

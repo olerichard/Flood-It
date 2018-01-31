@@ -1,19 +1,12 @@
 .board {
-  display:flex;
-  flex-direction: column;
-  align-items:stretch;
-  border:none;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px; 
-  text-align:center; 
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
 }
 
 .line {
-  flex:1;
-  display:flex;
-  flex-direction: row;
+  display: grid;
+  grid-auto-flow:column;
   padding: 0px;
-  margin: 0px;
   font-size:0px;
 }

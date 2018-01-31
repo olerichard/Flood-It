@@ -1,4 +1,4 @@
-.stdButton {
+.colorButton {
   position:relative;
 	color:#FFF;
 	display:block;
@@ -7,21 +7,35 @@
 	border-radius:5px;
 	background:#F7931E;
 	text-align:center;
-	padding:4%;
-   font-size:20px;
-   top:10px;
+	padding:0;
+  font-size:20px;
+  top:10px;
 	transition: all 0.5s;
-   box-shadow: 0px 15px 0px #FC726D;
+  box-shadow: 0px 15px 0px #FC726D;
 }
 
-.stdButtonToggle{
+.colorButtonToggle{
   box-shadow: 0px 7px 0px #FC726D;
 	top:17px;
 	background: #F9B05B;
 }
 
-.stdButton:active {
+.colorButton:active {
   box-shadow: 0px 7px 0px #FC726D;
 	top:17px;
 	background: #F9B05B;
+}
+
+.colors{
+  display: grid;
+	grid-auto-flow:column;
+	height: 50px;
+	padding: 0px;
+  margin: 0px;
+}
+
+.colors li {
+	padding: 0px;
+  margin: 0px;
+	font-size:0px;
 }

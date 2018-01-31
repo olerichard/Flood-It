@@ -10,7 +10,6 @@ export default function InitialState(){
     maxTurns: 0,
     difficulty: 3,
     winner: false,
-    window:{width:300,height:750},
     showSettings:true
   }
 }
