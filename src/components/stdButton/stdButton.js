@@ -1,7 +1,7 @@
 import React from 'react'
 import "./stdButton.css"
 
-const StdButton = ({click =function(){alert("Button pressed")},text,toggle = false,style ={} }) => {
+const StdButton = ({click =function(){console.log("Button pressed")},text,toggle = false,style ={} }) => {
   
   let toggleClass = ""
   

@@ -6,8 +6,12 @@
   grid-auto-rows: auto 1fr auto;
   grid-template-areas: 
     "TopMenu" 
-    "Board"
+    "PlayingField"
     "ButtonRow";    
+}
+
+.playingfield {
+  position: relative;
 }
 
 @media (min-width: 450px) {

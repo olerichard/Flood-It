@@ -2,7 +2,7 @@ import React from 'react'
 import "./colorButton.css"
 import Tile from "../tiles/standardTile/standardTile"
 
-const ColorButton = ({click =function(){alert("Button pressed")},text,toggle = false,style ={},colors }) => {
+const ColorButton = ({click =function(){console.log("Button pressed")},text,toggle = false,style ={},colors }) => {
   
   let toggleClass = ""
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Fa from 'font-awesome/css/font-awesome.css'
+import  'font-awesome/css/font-awesome.css'
 import "./topMenu.css"
 
 

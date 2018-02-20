@@ -3,85 +3,67 @@ import "./game.css"
 import Board from "../board/board"
 import ButtonRow from "../buttonRow/buttonRow"
 import TopMenu from "../topMenu/topMenu"
-import Settings from "../settings/settings"
 import MakeMove from "../../actions/makeMove"
 import RestartGame from "../../actions/restartGame"
+import WinnerSplash from "../winnersplash/winnersplash"
+import Settings from "../settings/settings"
 
 export default class Game extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.windowSize = this.windowSize.bind(this)
+
     this.restartClick = this.restartClick.bind(this)
     this.buttonClick = this.buttonClick.bind(this)
     this.settingsClick = this.settingsClick.bind(this)
-    this.resize = this.resize.bind(this)
-    this.updateSetting = this.updateSetting.bind(this)
-    this.save = this.save.bind(this)
-    this.state={}
+    this.saveClick = this.saveClick.bind(this)
+    this.state = {}
   }
-  
-  componentDidMount(){
-    window.addEventListener('keydown', this.handleKeyPress);
-   // window.addEventListener('resize', this.resize)
-    const newState = RestartGame()
- //   newState.window = this.windowSize(window.innerHeight,window.innerWidth)
-    this.setState(newState) 
 
-  }  
-  componentWillUnmount(){
-    window.removeEventListener('keydown', this.handleKeyPress);
-    window.removeEventListener('resize', this.resize)
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyPress);
+    const newState = RestartGame()
+    this.setState(newState)
+
   }
-  
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyPress);
+  }
+
   settingsClick = (state) => {
     state.showSettings = state.showSettings ? false : true
     this.setState(state)
   }
 
-  updateSetting = (state,settingName,newValue) => {
-    if(state[settingName] !== newValue)
-    {
-      state[settingName] = newValue
-      this.setState(state)
-    }
-  }
-
-  buttonClick = (color,state) => {
-    if(state.winner === false)
-      this.setState(MakeMove(color,state))
+  buttonClick = (color, state) => {
+    if (state.winner === false)
+      this.setState(MakeMove(color, state))
   }
 
   restartClick = (state) => {
-    const newState = RestartGame(state)
-    newState.window = this.windowSize(window.innerHeight,window.innerWidth)
-      this.setState(newState)
+    this.setState(RestartGame(state))
   }
 
-  save = (state) => {
-    var newState = RestartGame(state)
-    this.setState(newState)
+  saveClick = (newState) => {
+    this.setState(RestartGame(newState))
   }
 
-  windowSize = (h,w) =>{ 
-    return {width:h/2.5,height:h}
-  }
+  render() {
+    if (this.state.board === undefined) { return (<p>Loading..</p>) }
 
-  resize = () =>{
-    this.setState({window: this.windowSize(window.innerHeight,window.innerWidth)})
-  }
+    let board = this.state.showSettings ?
+      <Settings state={this.state} save={this.saveClick} /> :
+      <Board board={this.state.board} colors={this.state.colorTemplates[this.state.chosenColor]} />
+    let splash = this.state.winner !== false ? <WinnerSplash state={this.state} restart={this.restartClick} /> : null
 
-  render() {    
-    if(this.state.board === undefined){
-      return (<p>Loading..</p>)
-    }
-    let settings = {updateSetting:this.updateSetting,save:this.save,showSettings:this.state.showSettings}    
     return (
       <div className="game" >
-        
-          <TopMenu state={this.state} restart={this.restartClick} setting={this.settingsClick} />
-          <Board board={this.state.board} colors={this.state.colors} winCondition={this.state.winner} restart={this.restartClick} setting={settings} state={this.state} />
-          <ButtonRow state={this.state} click={this.buttonClick}/>
+        <TopMenu state={this.state} restart={this.restartClick} setting={this.settingsClick} />
+        <div className="playingfield">
+          {board}
+          {splash}
+        </div>
+        <ButtonRow state={this.state} click={this.buttonClick} />
       </div>)
   }
 

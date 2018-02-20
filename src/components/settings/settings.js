@@ -1,54 +1,71 @@
-import React from 'react'
-import "./settings.css"
-import StdButton from '../stdButton/stdButton'
-import ColorButton from '../colorButton/colorButton'
+import React, { Component } from 'react'
+import "./settings.css";
+import StdButton from '../stdButton/stdButton';
+import ColorButton from '../colorButton/colorButton';
+import InputRange from 'react-input-range';
 
-const Settings = ({state , update, restart, save}) => {
 
-  const style = {
+export default class Settings extends Component {
+  constructor(props) {
+    super(props);
 
-                }
-            
-   const saveBtnStyle = {
-                         
-                  }
-  
+    this.state = props.state
+    this.updateSetting = this.updateSetting.bind(this)
+    this.saveClick = props.save
+  }
 
-  return ( 
-    <div className="settings">
-      
-      <div className="boardSize columns">
-        <div className="boardSizeHeader">BOARD SIZE</div>
-        <div className="boardSizeSettings">
-          <StdButton text="5"  toggle = {state.boardSize===5  ? true:false} click = {update.bind(null,state,"boardSize",5)} style={style} />
-          <StdButton text="10" toggle = {state.boardSize===10 ? true:false} click = {update.bind(null,state,"boardSize",10)} style={style}/>
-          <StdButton text="20" toggle = {state.boardSize===20 ? true:false} click = {update.bind(null,state,"boardSize",20)} style={style}/>
+  updateSetting = (state, settingName, newValue) => {
+    if (state[settingName] !== newValue) {
+      state[settingName] = newValue
+      this.setState(state)
+    }
+  }
+
+  render() {
+    return (
+      <div className="settings">
+
+        <div className="boardSize columns">
+          <div className="boardSizeHeader">BOARD SIZE</div>
+          <div className="boardSizeSettings rows">
+            <StdButton text="5" toggle={this.state.boardSize === 5 ? true : false} click={this.updateSetting.bind(null, this.state, "boardSize", 5)} />
+            <StdButton text="10" toggle={this.state.boardSize === 10 ? true : false} click={this.updateSetting.bind(null, this.state, "boardSize", 10)} />
+            <StdButton text="20" toggle={this.state.boardSize === 20 ? true : false} click={this.updateSetting.bind(null, this.state, "boardSize", 20)} />
+          </div>
         </div>
-      </div>
-      
-      <div className="colorScheme columns">
-        <div className="colorSchemeHeader">COLORS</div>
-        <div className="colorSchemeSettings">
-        <ColorButton text="" style={style} colors={state.altColor[0]}/>
-        <ColorButton text="" style={style} colors={state.altColor[1]}/>
-        </div>
-      </div>
 
-      <div className="difficulty columns"> 
-        <div className="difficultyHeader">DIFFICULTY</div>
-        <div className="difficultySettings">  
-        <StdButton text="Easy" toggle = {state.difficulty===3  ? true:false} click = {update.bind(null,state,"difficulty",3)} style={style}/>
-        <StdButton text="Medium" toggle = {state.difficulty===2  ? true:false} click = {update.bind(null,state,"difficulty",2)} style={style}/>
-        <StdButton text="Hard"toggle = {state.difficulty===1 ? true:false} click = {update.bind(null,state,"difficulty",1)} style={style}/>
+        <div className="colorScheme columns">
+          <div className="colorSchemeHeader">COLORS</div>
+          <div className="colorSchemeSettings rows">
+            <ColorButton text="" toggle={this.state.chosenColor === 1 ? true : false} colors={this.state.colorTemplates[1]} click={this.updateSetting.bind(null, this.state, "chosenColor", 1)} />
+            <ColorButton text="" toggle={this.state.chosenColor === 0 ? true : false} colors={this.state.colorTemplates[0]} click={this.updateSetting.bind(null, this.state, "chosenColor", 0)} />
+          </div>
         </div>
-      </div>
-      <div className="save columns"> 
-      <StdButton text="SAVE" click = {save.bind(null,state)} style ={saveBtnStyle} />
-      </div>
-    </div>
 
-  )  
+        <div className="difficulty columns" style={{ display: 'none' }}>
+          <div className="difficultyHeader">DIFFICULTY</div>
+          <div className="difficultySettings rows">
+            <StdButton text="Easy" toggle={this.state.difficulty === 3 ? true : false} click={this.updateSetting.bind(null, this.state, "difficulty", 3)} />
+            <StdButton text="Medium" toggle={this.state.difficulty === 2 ? true : false} click={this.updateSetting.bind(null, this.state, "difficulty", 2)} />
+            <StdButton text="Hard" toggle={this.state.difficulty === 1 ? true : false} click={this.updateSetting.bind(null, this.state, "difficulty", 1)} />
+          </div>
+        </div>
+
+        <div className="colorCount">
+          <div className="colorCountHeader">COLOR COUNT</div>
+          <div className="colorCountRange">
+            <InputRange
+              maxValue={7}
+              minValue={3}
+              value={this.state.colorCount}
+              onChange={value => this.setState({ colorCount: value })} />
+          </div>
+        </div>
+
+        <div className="save columns">
+          <StdButton text="SAVE" click={this.saveClick.bind(null, this.state)} />
+        </div>
+      </div >
+    )
+  }
 }
-
-export default Settings
-
