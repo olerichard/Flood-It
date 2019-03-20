@@ -27,7 +27,7 @@ export default class Settings extends Component {
 
         <div className="boardSize columns">
           <div className="boardSizeHeader">BOARD SIZE</div>
-          <div className="boardSizeSettings rows">
+          <div className="boardSizeSettings">
             <StdButton text="5" toggle={this.state.boardSize === 5 ? true : false} click={this.updateSetting.bind(null, this.state, "boardSize", 5)} />
             <StdButton text="10" toggle={this.state.boardSize === 10 ? true : false} click={this.updateSetting.bind(null, this.state, "boardSize", 10)} />
             <StdButton text="20" toggle={this.state.boardSize === 20 ? true : false} click={this.updateSetting.bind(null, this.state, "boardSize", 20)} />
@@ -36,18 +36,9 @@ export default class Settings extends Component {
 
         <div className="colorScheme columns">
           <div className="colorSchemeHeader">COLORS</div>
-          <div className="colorSchemeSettings rows">
+          <div className="colorSchemeSettings">
             <ColorButton text="" toggle={this.state.chosenColor === 1 ? true : false} colors={this.state.colorTemplates[1]} click={this.updateSetting.bind(null, this.state, "chosenColor", 1)} />
             <ColorButton text="" toggle={this.state.chosenColor === 0 ? true : false} colors={this.state.colorTemplates[0]} click={this.updateSetting.bind(null, this.state, "chosenColor", 0)} />
-          </div>
-        </div>
-
-        <div className="difficulty columns" style={{ display: 'none' }}>
-          <div className="difficultyHeader">DIFFICULTY</div>
-          <div className="difficultySettings rows">
-            <StdButton text="Easy" toggle={this.state.difficulty === 3 ? true : false} click={this.updateSetting.bind(null, this.state, "difficulty", 3)} />
-            <StdButton text="Medium" toggle={this.state.difficulty === 2 ? true : false} click={this.updateSetting.bind(null, this.state, "difficulty", 2)} />
-            <StdButton text="Hard" toggle={this.state.difficulty === 1 ? true : false} click={this.updateSetting.bind(null, this.state, "difficulty", 1)} />
           </div>
         </div>
 

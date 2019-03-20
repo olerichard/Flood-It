@@ -1,11 +1,14 @@
 .splash {
-  position: absolute;
+  position: relative;
   height: 30%;
   margin-top:30%;
-  width: 100%;
+  margin-left:auto;
+  margin-right:auto;
+  width: 90%;
   z-index: 2;
   font-size:40px;
   color:white;
   text-align: center;
+  
 }
 

@@ -12,7 +12,6 @@ export default class Game extends Component {
   constructor(props) {
     super(props);
 
-
     this.restartClick = this.restartClick.bind(this)
     this.buttonClick = this.buttonClick.bind(this)
     this.settingsClick = this.settingsClick.bind(this)
@@ -21,13 +20,8 @@ export default class Game extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyPress);
     const newState = RestartGame()
     this.setState(newState)
-
-  }
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyPress);
   }
 
   settingsClick = (state) => {

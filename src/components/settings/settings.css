@@ -22,12 +22,27 @@
   background-color:#AF4175;
 }
 
-.columns{
-  margin:20px;
+.boardSizeHeader{
+  margin-top:1.5rem;
+  margin-bottom: 0.75rem;
 }
 
-.rows {
-  display:flex;
+.columns{
+  width: 100%;
+}
+.boardSizeSettings {
+  display:grid;
+  margin:0.5rem;
+  height: 3rem;
+  grid-column-gap: 0.5rem;
+  grid-template-columns: repeat(3,1fr);
+}
+
+.colorSchemeSettings {
+  display:grid;
+  margin:0.5rem;
+  grid-column-gap: 0.5rem;
+  grid-template-columns: repeat(2,1fr);
 }
 
 .input-range__slider {

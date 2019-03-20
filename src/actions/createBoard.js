@@ -1,8 +1,8 @@
-export default function CreateBoard(y, x, colorCount) {
-  return Array(y).fill().map(() => Array(x).fill().map(() => color(colorCount)))
+export default function CreateBoard(rows, tilesPerRow, colorCount) {
+  return Array(rows).fill().map(() => Array(tilesPerRow).fill().map(() => tileColor(colorCount)))
 }
 
-function color(colorCount) {
+function tileColor(colorCount) {
   return {
     color: Math.floor(Math.random() * colorCount),
     collected: false

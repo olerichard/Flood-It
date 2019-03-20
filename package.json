@@ -2,6 +2,7 @@
   "name": "flood-it",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://olerichard.org/spill/floodit",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "react": "^16.1.1",

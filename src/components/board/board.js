@@ -1,7 +1,9 @@
 import React from 'react'
 import shortId from 'shortid'
+import PropTypes from 'prop-types'
 import "./board.css"
-import Tile from "../tiles/standardTile/standardTile"
+import Tile from "../tiles/Tile"
+
 
 const Board = ({ board, colors }) => {
 
@@ -17,4 +19,10 @@ const Board = ({ board, colors }) => {
   </div>
   )
 }
+
+Board.propTypes = {
+  board: PropTypes.array.isRequired,
+  colors: PropTypes.array.isRequired
+}
+
 export default Board
