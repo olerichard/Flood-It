@@ -2,11 +2,11 @@ import React from 'react'
 import "./button.css"
 import PropTypes from 'prop-types'
 
-const Button = ({ color, index, state, click }) => {
+const Button = ({ color, index, click }) => {
   return (<li
     className={`button`}
     style={{ backgroundColor: color }}
-    onClick={click.bind(null, index, state)}
+    onClick={click.bind(null, index)}
   ></li>)
 }
 
@@ -14,7 +14,6 @@ const Button = ({ color, index, state, click }) => {
 Button.propTypes = {
   color: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
-  state: PropTypes.object.isRequired,
   click: PropTypes.func.isRequired
 }
 

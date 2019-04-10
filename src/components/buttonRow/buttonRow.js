@@ -3,19 +3,19 @@ import "./buttonRow.css"
 import Button from "../button/button"
 import PropTypes from 'prop-types'
 
-const ButtonRow = ({ state, click }) => {
-  return (<ul className="buttonRow" style={{ gridTemplateColumns: `repeat(${state.colorCount},50px)` }}>
-    {state.colorTemplates[state.chosenColor].slice(0, state.colorCount).map((c, i) => {
-      return (<Button color={c} index={i} state={state} click={click} key={i} />)
+const ButtonRow = ({ colorCount, colors, makeMove }) => {
+  return (<ul className="buttonRow" style={{ gridTemplateColumns: `repeat(${colorCount},50px)` }}>
+    {colors.slice(0, colorCount).map((c, i) => {
+      return (<Button color={c} index={i} click={makeMove} key={i} />)
     })}
   </ul>)
 }
 
 ButtonRow.propTypes = {
-  state: PropTypes.object.isRequired,
-  click: PropTypes.func.isRequired
+  colorCount: PropTypes.number.isRequired,
+  colors: PropTypes.array.isRequired,
+  makeMove: PropTypes.func.isRequired
 }
-
 
 export default ButtonRow
 

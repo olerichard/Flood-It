@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 import "./board.css"
 import Tile from "../tiles/Tile"
 
-
 const Board = ({ board, colors }) => {
-
   return (<div className="board" key="board">{
     board.map((line) => {
       return <ul className={`line`} key={shortId.generate()} >
@@ -15,7 +13,6 @@ const Board = ({ board, colors }) => {
         })}
       </ul>
     })}
-
   </div>
   )
 }

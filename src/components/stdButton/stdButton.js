@@ -3,13 +3,7 @@ import "./stdButton.css"
 import PropTypes from 'prop-types'
 
 const StdButton = ({ click, text, toggle = false, style = {} }) => {
-
-  let toggleClass = ""
-
-  if (toggle)
-    toggleClass = "stdButtonToggle"
-
-  return (<div className={`stdButton ${toggleClass}`} onClick={click} style={style} >{text}</div>)
+  return (<div className={`stdButton ${toggle ? "stdButtonToggle" : ""}`} onClick={click} style={style} >{text}</div>)
 }
 
 StdButton.propTypes = {

@@ -2,7 +2,7 @@ export default function InitialState() {
   return {
     turn: 0,
     maxTurns: 0,
-    showSettings: true,
+    showSettings: false,
     boardSize: 5,
     colorTemplates: [
       ['red', 'blue', 'orange', 'purple', 'yellow', 'brown', 'green'],
