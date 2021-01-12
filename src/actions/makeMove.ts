@@ -1,4 +1,6 @@
-export default function MakeMove(color, state) {
+import GameState from "../models/GameState"
+
+const makeMove = (color:number, state:GameState) => {
   const newState = { ...state }
   const board = newState.board
 
@@ -32,22 +34,22 @@ export default function MakeMove(color, state) {
   }
   board.map((r) => r.map((l) => l.color = l.collected === true ? color : l.color))
 
-  newState.winner = "won"
+  newState.gameCondition = "won"
   for (let r = 0; r < board.length; r++) {
     for (let t = 0; t < board[r].length; t++) {
       if (board[r][t].collected === false) {
-        newState.winner = false
+        newState.gameCondition = 'running'
         break;
       }
-
     }
   }
 
   newState.turn++
-  if (newState.turn >= newState.maxTurns && newState.winner === false)
-    newState.winner = "lost"
+  if (newState.turn >= newState.maxTurns && newState.gameCondition === 'running')
+    newState.gameCondition = 'lost'
 
 
   return newState;
 }
 
+export default makeMove 

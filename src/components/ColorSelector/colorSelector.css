@@ -1,4 +1,4 @@
-.buttonRow {
+.colorSelector {
   display:grid;
   grid-template-columns: repeat(5,1fr);
   grid-gap:5px;
@@ -9,3 +9,10 @@
   justify-content: space-around;	
 }
 
+.colorSelectButton {
+  margin: 0px;
+  font-size:0px;
+  border:0px;
+  border: none;
+  border-radius: 100%;
+}
