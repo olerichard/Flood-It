@@ -7,10 +7,12 @@ import WinnerSplash from '../Winnersplash';
 import Settings from '../Settings';
 import restartGame from '../../actions/restartGame';
 import makeMove from '../../actions/makeMove';
-import GameState from '../../models/GameState';
+import Game from '../../models/Game';
 
 const Game: FC = () => {
-    const [state, setState] = useState<GameState>(restartGame());
+
+        
+    const [state, setState] = useState<Game>(restartGame());
 
     const settingsClick = () => setState({ ...state, showSettings: !state.showSettings });
 

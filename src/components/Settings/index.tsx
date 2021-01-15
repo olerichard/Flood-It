@@ -3,7 +3,7 @@ import './settings.css';
 import Button from '../Button';
 import ColorButton from '../ColorButton';
 import InputRange from 'react-input-range';
-import GameState from '../../models/GameState';
+import GameState from '../../models/Game';
 
 type SettingsProps = {
     gameState: GameState;
@@ -23,9 +23,21 @@ const Settings: FC<SettingsProps> = ({
             <div className="boardSize columns">
                 <div className="boardSizeHeader">BOARD SIZE</div>
                 <div className="boardSizeSettings">
-                    <Button text="5" toggle={boardSize === 5} click={() => setBoardSize(5)} />
-                    <Button text="10" toggle={boardSize === 10} click={() => setBoardSize(10)} />
-                    <Button text="20" toggle={boardSize === 20} click={() => setBoardSize(20)} />
+                    <Button
+                        text="5"
+                        toggle={selectedBoardSize === 5}
+                        click={() => setBoardSize(5)}
+                    />
+                    <Button
+                        text="10"
+                        toggle={selectedBoardSize === 10}
+                        click={() => setBoardSize(10)}
+                    />
+                    <Button
+                        text="20"
+                        toggle={selectedBoardSize === 20}
+                        click={() => setBoardSize(20)}
+                    />
                 </div>
             </div>
 
@@ -34,13 +46,13 @@ const Settings: FC<SettingsProps> = ({
                 <div className="colorSchemeSettings">
                     <ColorButton
                         text=""
-                        toggle={chosenColor === 1}
+                        toggle={selectedChosenColor === 1}
                         colors={colorTemplates[1]}
                         onClick={() => setChosenColor(1)}
                     />
                     <ColorButton
                         text=""
-                        toggle={chosenColor === 0}
+                        toggle={selectedChosenColor === 0}
                         colors={colorTemplates[0]}
                         onClick={() => setChosenColor(0)}
                     />
@@ -53,7 +65,7 @@ const Settings: FC<SettingsProps> = ({
                     <InputRange
                         maxValue={7}
                         minValue={3}
-                        value={colorCount}
+                        value={selectedColorCount}
                         onChange={(value) => {
                             setColorCount(value as number);
                         }}

@@ -1,5 +1,5 @@
 type Tile = {
-    color: number;
+    color: string;
     collected: boolean;
 };
 
