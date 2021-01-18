@@ -1,24 +1,46 @@
 import { useState } from 'react';
-import Settings from '../models/Settings';
-import { templateNames } from './useColorTemplates';
+import SettingsType from '../models/SettingsType';
 
-const initialSettings: Settings = {
-    showSettings: false,
+const defaultSettings: SettingsType = {
     boardSize: 10,
     template: 'pastel',
     colorCount: 5,
-    difficulty: 1,
+    difficulty: 3,
+    showSettings: false,
 };
 
-const useSettings = () => {
-    const [settings, setSettings] = useState<Settings>({ ...initialSettings });
+export type UseSettings = {
+    activeSettings: SettingsType;
+    changeSetting: <K extends keyof SettingsType>(setting: K, value: SettingsType[K]) => void;
+    changeSettings: (settings: SettingsType) => void;
+    resetToDefaultSettings: () => void;
+    toggleSettings: () => void;
+};
 
-    const setSetting = (setting: keyof Settings, value: templateNames | boolean | number) =>
-        setSettings((prevState) => ({ ...prevState, [setting]: value }));
+const useSettings = (initialSettings?: SettingsType): UseSettings => {
+    const [activeSettings, setActiveSettings] = useState<SettingsType>({
+        ...(initialSettings ?? defaultSettings),
+    });
 
-    const resetSettings = () => setSettings({ ...initialSettings });
+    function changeSetting<K extends keyof SettingsType>(setting: K, value: SettingsType[K]) {
+        setActiveSettings((settings) => ({ ...settings, [setting]: value }));
+    }
 
-    return { settings, setSetting, resetSettings };
+    const changeSettings = (settings: SettingsType) => setActiveSettings(settings);
+
+    const resetToDefaultSettings = () => setActiveSettings({ ...defaultSettings });
+
+    const toggleSettings = () => {
+        setActiveSettings((settings) => ({ ...settings, showSettings: !settings.showSettings }));
+    };
+
+    return {
+        activeSettings,
+        changeSetting,
+        changeSettings,
+        resetToDefaultSettings,
+        toggleSettings,
+    };
 };
 
 export default useSettings;

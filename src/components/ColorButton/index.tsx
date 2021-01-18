@@ -7,7 +7,7 @@ type ColorButtonProps = {
     text: string;
     colors: string[];
     toggle?: boolean;
-    style?: any;
+    style?: React.CSSProperties;
 };
 
 const ColorButton: FC<ColorButtonProps> = ({ onClick, text, toggle, style, colors }) => {

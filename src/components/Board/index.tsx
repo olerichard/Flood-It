@@ -5,10 +5,9 @@ import Boards from '../../models/Board';
 
 type BoardProps = {
     board: Boards;
-    colors: string[];
 };
 
-const Board: FC<BoardProps> = ({ board, colors }) => {
+const Board: FC<BoardProps> = ({ board }) => {
     return (
         <div className="board" key="board">
             {board.map((line, lineIndex) => {
@@ -16,10 +15,7 @@ const Board: FC<BoardProps> = ({ board, colors }) => {
                     <ul className={`line`} key={`BoardLine${lineIndex}`}>
                         {line.map((t, rowIndex) => {
                             return (
-                                <Tile
-                                    color={colors[t.color]}
-                                    key={`BoardLine${lineIndex}Row${rowIndex}`}
-                                />
+                                <Tile color={t.color} key={`BoardLine${lineIndex}Row${rowIndex}`} />
                             );
                         })}
                     </ul>

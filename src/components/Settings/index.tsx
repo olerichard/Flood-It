@@ -3,20 +3,27 @@ import './settings.css';
 import Button from '../Button';
 import ColorButton from '../ColorButton';
 import InputRange from 'react-input-range';
-import GameState from '../../models/Game';
+import useColorTemplates from '../../hooks/useColorTemplates';
+import { UseSettings } from '../../hooks/useSettings';
+import SettingsType from '../../models/SettingsType';
 
 type SettingsProps = {
-    gameState: GameState;
-    saveSettings: (boardSize: number, chosenColor: number, colorCount: number) => void;
+    settings: UseSettings;
 };
 
-const Settings: FC<SettingsProps> = ({
-    gameState: { boardSize, chosenColor, colorCount, colorTemplates },
-    saveSettings,
-}) => {
-    const [selectedBoardSize, setBoardSize] = useState(boardSize);
-    const [selectedChosenColor, setChosenColor] = useState(chosenColor);
-    const [selectedColorCount, setColorCount] = useState(colorCount);
+const Settings: FC<SettingsProps> = ({ settings }) => {
+    const { activeSettings, changeSettings, toggleSettings } = settings;
+
+    const [selectedSettings, setSelectedSettings] = useState<SettingsType>({ ...activeSettings });
+
+    function changeSelectedSetting<K extends keyof SettingsType>(
+        setting: K,
+        value: SettingsType[K]
+    ) {
+        setSelectedSettings((settings) => ({ ...settings, [setting]: value }));
+    }
+
+    const getColorTemplate = useColorTemplates().getTemplate;
 
     return (
         <div className="settings">
@@ -25,18 +32,18 @@ const Settings: FC<SettingsProps> = ({
                 <div className="boardSizeSettings">
                     <Button
                         text="5"
-                        toggle={selectedBoardSize === 5}
-                        click={() => setBoardSize(5)}
+                        toggle={selectedSettings.boardSize === 5}
+                        click={() => changeSelectedSetting('boardSize', 5)}
                     />
                     <Button
                         text="10"
-                        toggle={selectedBoardSize === 10}
-                        click={() => setBoardSize(10)}
+                        toggle={selectedSettings.boardSize === 10}
+                        click={() => changeSelectedSetting('boardSize', 10)}
                     />
                     <Button
                         text="20"
-                        toggle={selectedBoardSize === 20}
-                        click={() => setBoardSize(20)}
+                        toggle={selectedSettings.boardSize === 20}
+                        click={() => changeSelectedSetting('boardSize', 20)}
                     />
                 </div>
             </div>
@@ -46,15 +53,15 @@ const Settings: FC<SettingsProps> = ({
                 <div className="colorSchemeSettings">
                     <ColorButton
                         text=""
-                        toggle={selectedChosenColor === 1}
-                        colors={colorTemplates[1]}
-                        onClick={() => setChosenColor(1)}
+                        toggle={selectedSettings.template === 'pastel'}
+                        colors={getColorTemplate('pastel')}
+                        onClick={() => changeSelectedSetting('template', 'basic')}
                     />
                     <ColorButton
                         text=""
-                        toggle={selectedChosenColor === 0}
-                        colors={colorTemplates[0]}
-                        onClick={() => setChosenColor(0)}
+                        toggle={selectedSettings.template === 'basic'}
+                        colors={getColorTemplate('basic')}
+                        onClick={() => changeSelectedSetting('template', 'basic')}
                     />
                 </div>
             </div>
@@ -65,9 +72,9 @@ const Settings: FC<SettingsProps> = ({
                     <InputRange
                         maxValue={7}
                         minValue={3}
-                        value={selectedColorCount}
+                        value={selectedSettings.colorCount}
                         onChange={(value) => {
-                            setColorCount(value as number);
+                            changeSelectedSetting('colorCount', value as number);
                         }}
                     />
                 </div>
@@ -76,9 +83,10 @@ const Settings: FC<SettingsProps> = ({
             <div className="save columns">
                 <Button
                     text="SAVE"
-                    click={() =>
-                        saveSettings(selectedBoardSize, selectedChosenColor, selectedColorCount)
-                    }
+                    click={() => {
+                        changeSettings(selectedSettings);
+                        toggleSettings();
+                    }}
                 />
             </div>
         </div>

@@ -2,7 +2,7 @@ import Board from './Board';
 
 export type GameCondition = 'won' | 'lost' | 'running';
 
-type Game = {
+type GameState = {
     turn: number;
     maxTurns: number;
     colors: string[];
@@ -10,4 +10,4 @@ type Game = {
     gameCondition: GameCondition;
 };
 
-export default Game;
+export default GameState;

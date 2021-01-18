@@ -4,7 +4,7 @@ import './colorSelector.css';
 type ColorSelectorProps = {
     colorCount: number;
     colors: string[];
-    makeMove: (color: number) => void;
+    makeMove: (color: string) => void;
 };
 
 const ColorSelector: FC<ColorSelectorProps> = ({ colorCount, colors, makeMove }) => {
@@ -15,7 +15,7 @@ const ColorSelector: FC<ColorSelectorProps> = ({ colorCount, colors, makeMove })
                     key={'colorSelectButton' + index}
                     className={'colorSelectButton'}
                     style={{ backgroundColor: color }}
-                    onClick={() => makeMove(index)}
+                    onClick={() => makeMove(color)}
                 ></li>
             ))}
         </ul>

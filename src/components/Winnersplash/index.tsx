@@ -1,7 +1,7 @@
 import './winnersplash.css';
 import Button from '../Button';
 import { FC } from 'react';
-import { GameCondition } from '../../models/Game';
+import { GameCondition } from '../../models/GameState';
 
 type gameResult = Exclude<GameCondition, 'running'>;
 

@@ -1,55 +1,41 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import './game.css';
 import Board from '../Board';
 import ButtonRow from '../ColorSelector';
 import TopMenu from '../TopMenu';
 import WinnerSplash from '../Winnersplash';
 import Settings from '../Settings';
-import restartGame from '../../actions/restartGame';
-import makeMove from '../../actions/makeMove';
-import Game from '../../models/Game';
+import useSettings from '../../hooks/useSettings';
+import useGame from '../../hooks/useGame';
 
 const Game: FC = () => {
-
-        
-    const [state, setState] = useState<Game>(restartGame());
-
-    const settingsClick = () => setState({ ...state, showSettings: !state.showSettings });
-
-    const restartClick = () => setState(restartGame(state));
-
-    const saveSettingsClick = (boardSize: number, chosenColor: number, colorCount: number) =>
-        setState(restartGame({ ...state, boardSize, chosenColor, colorCount }));
-
-    const makeMoveClick = (color: number) =>
-        state.gameCondition === 'running' && setState(makeMove(color, state));
+    const settings = useSettings();
+    const { activeSettings, toggleSettings } = settings;
+    const { game, resetGame, makeMove } = useGame(activeSettings);
 
     return (
         <div className="game">
             <TopMenu
-                turn={state.turn}
-                maxTurns={state.maxTurns}
-                showSettings={state.showSettings}
-                restart={restartClick}
-                setting={settingsClick}
+                turn={game.turn}
+                maxTurns={game.maxTurns}
+                showSettings={activeSettings.showSettings}
+                restart={resetGame}
+                setting={toggleSettings}
             />
             <div className="playingfield">
-                {state.showSettings && (
-                    <Settings gameState={state} saveSettings={saveSettingsClick} />
+                {activeSettings.showSettings ? (
+                    <Settings settings={settings} />
+                ) : (
+                    <Board board={game.board} />
                 )}
-
-                {!state.showSettings && (
-                    <Board board={state.board} colors={state.colorTemplates[state.chosenColor]} />
-                )}
-
-                {state.gameCondition !== 'running' && (
-                    <WinnerSplash gameResult={state.gameCondition} restart={restartClick} />
+                {game.gameCondition !== 'running' && (
+                    <WinnerSplash gameResult={game.gameCondition} restart={resetGame} />
                 )}
             </div>
             <ButtonRow
-                colorCount={state.colorCount}
-                colors={state.colorTemplates[state.chosenColor]}
-                makeMove={makeMoveClick}
+                colorCount={settings.activeSettings.colorCount}
+                colors={game.colors}
+                makeMove={makeMove}
             />
         </div>
     );

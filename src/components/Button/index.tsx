@@ -5,7 +5,7 @@ type ButtonProps = {
     click: () => void;
     text: string;
     toggle?: boolean;
-    style?: any;
+    style?: React.CSSProperties;
 };
 
 const Button: FC<ButtonProps> = ({ click, text, toggle, style }) => {
